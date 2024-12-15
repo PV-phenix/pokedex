@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet,RouterLink } from '@angular/router';
 
 import {PokemonBorderDirective} from './pokemon-border.directive'
 import { DatePipe, UpperCasePipe } from '@angular/common'; 
@@ -11,12 +11,12 @@ import { PokemonListComponent} from './pokemon/pokemon-list/pokemon-list.compone
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  // title='Pokedex';
+  title='Pokedex';
   // name = signal('Pikachu');
   // imageSrc = signal('images/pikachu.png');
   // life =signal(21);

@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/angular-pokedex-app/browser",
+    "public": "dist\\angular-pokedex-app\\browser",
     "ignore": [
       "firebase.json",
       "**/.*",

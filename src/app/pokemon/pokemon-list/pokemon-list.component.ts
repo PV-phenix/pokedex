@@ -2,7 +2,7 @@ import { Component,signal,inject,computed } from '@angular/core';
 import { Pokemon } from '../../pokemon.model';
 import { PokemonService } from '../../pokemon.service'; 
 import { DatePipe, UpperCasePipe } from '@angular/common'; 
-import {PokemonBorderDirective} from '../../pokemon-border.directive'
+import { PokemonBorderDirective} from '../../pokemon-border.directive'
 import { RouterLink } from '@angular/router';
 
 @Component({
