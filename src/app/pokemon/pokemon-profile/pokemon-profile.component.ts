@@ -4,11 +4,10 @@ import { PokemonService } from '../../pokemon.service';
 import { DatePipe } from '@angular/common';  // 👈
 
 @Component({
-  selector: 'app-pokemon-profile',
-  standalone: true,
-  imports: [RouterLink,DatePipe],
-  templateUrl: './pokemon-profile.component.html',
-  styles: ``
+    selector: 'app-pokemon-profile',
+    imports: [RouterLink, DatePipe],
+    templateUrl: './pokemon-profile.component.html',
+    styles: ``
 })
 export class PokemonProfileComponent {
   readonly route = inject(ActivatedRoute);

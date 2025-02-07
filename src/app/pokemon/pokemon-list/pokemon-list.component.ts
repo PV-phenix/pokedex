@@ -6,11 +6,10 @@ import { PokemonBorderDirective} from '../../pokemon-border.directive'
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-pokemon-list',
-  standalone: true,
-  imports: [PokemonBorderDirective,DatePipe, UpperCasePipe,RouterLink],
-  templateUrl: './pokemon-list.component.html',
-  styles: ``
+    selector: 'app-pokemon-list',
+    imports: [PokemonBorderDirective, DatePipe, UpperCasePipe, RouterLink],
+    templateUrl: './pokemon-list.component.html',
+    styles: ``
 })
 export class PokemonListComponent {
   private readonly pokemonService = inject(PokemonService);

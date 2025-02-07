@@ -5,11 +5,10 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-pokemon-edit',
-  standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
-  templateUrl: './pokemon-edit.component.html',
-  styles: ``
+    selector: 'app-pokemon-edit',
+    imports: [RouterLink, ReactiveFormsModule],
+    templateUrl: './pokemon-edit.component.html',
+    styles: ``
 })
 export class PokemonEditComponent 
 {
