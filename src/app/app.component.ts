@@ -1,16 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet,RouterLink } from '@angular/router';
+import { RouterOutlet} from '@angular/router';
 
-import {PokemonBorderDirective} from './pokemon-border.directive'
-import { DatePipe, UpperCasePipe } from '@angular/common'; 
-import { ReversePipe } from './reverse.pipe'; 
-
-import { PokemonListComponent} from './pokemon/pokemon-list/pokemon-list.component';
 
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, RouterLink],
+    imports: [RouterOutlet],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
