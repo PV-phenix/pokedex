@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
     selector: 'app-pokemon-edit',
-    imports: [RouterLink, ReactiveFormsModule],
+    imports: [RouterLink, ReactiveFormsModule],// ajouter JsonPipe pour debogage
     templateUrl: './pokemon-edit.component.html',
     styles: ``
 })

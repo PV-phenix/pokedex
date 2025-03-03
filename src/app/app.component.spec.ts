@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'angular-pokedex-app' title`, () => {
+  it(`should have the 'Pokedex' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-pokedex-app');
+    expect(app.title).toEqual('Pokedex');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-pokedex-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain("Bienvenue sur l'application Pokedex");
   });
 });

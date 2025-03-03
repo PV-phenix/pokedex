@@ -16,12 +16,25 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<!-- Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io). -->
+Remplacer par Jest ou Vitest pour les tests unitaires 
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<!-- Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities. -->
+
+Remplacer par Web Test Runner 
 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+Remarque pour enlever zone.js: 
+npm uninstall zone.js
+enlever polyfills:"['zone.js']" de angular.json
+enfin enlever provideZoneChangeDetection de app.confis.ts et mettre provideExperimentalZonelessChangeDetection à la place sinon l'erreur suivante se produit
+"provideZoneChangeDetection and provideExperimentalZonelessChangeDetection cannot be used together."
+
+Il est préférable maintenant de créer des formulaires avec des signaux. Les formulaires basés sur les Modeles et reactif auront une meilleur integration avec les signaux.
+
+Le remplacement de Karma est à l'étude au profit de Web test runner,Jest et Vitest

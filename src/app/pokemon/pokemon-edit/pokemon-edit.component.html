@@ -65,13 +65,25 @@
                   <tr>
                     <th scope="row">Types</th>
                     <td>
+                      @for(type of pokemonTypeList.controls; track type; let index = $index) { 
+                      <button
+                        type="button"
+                        class="btn btn-secondary btn-sm rounded-pill m-1"
+                        (click)="pokemonTypeList.removeAt(index)"
+                      >
+                        {{ type.value }} <span class="badge">x</span>
+                      </button>
+                      }
+                    <td>
                       <div class="row mt-3">
-                        @for(type of pokemonService.getPokemonTypeList(); track
-                        type) {
+                        @for(type of pokemonService.getPokemonTypeList(); track type) {
                         <div class="col-md-4">
                           <div class="form-check">
                             <input
+                              #checkbox 
                               class="form-check-input"
+                              [checked]="isPokemonTypeSelected(type)" 
+                              (change)="onPokemonTypeChange(type, checkbox.checked)" 
                               type="checkbox"
                               [value]="type"
                               [id]="type"
@@ -106,3 +118,5 @@
         </div>
       </div>
     </div>
+    </div>
+    <!--<pre>{{ form.value | json }}</pre> C'est pour faire du débogage-->

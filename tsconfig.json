@@ -25,6 +25,7 @@
     ]
   },
   "angularCompilerOptions": {
+    "strictStandAlone": true,// This option is deprecated and will be removed in a future version of Angular
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
