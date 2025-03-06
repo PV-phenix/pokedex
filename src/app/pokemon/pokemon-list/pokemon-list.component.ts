@@ -46,5 +46,6 @@ export class PokemonListComponent {
   reset(pokemon:Pokemon) {
     pokemon.life=0;
   }
+  
 
 }

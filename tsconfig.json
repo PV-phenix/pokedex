@@ -22,7 +22,8 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "types": ["@vitest/browser/providers/playwright"]
   },
   "angularCompilerOptions": {
     "strictStandAlone": true,// This option is deprecated and will be removed in a future version of Angular

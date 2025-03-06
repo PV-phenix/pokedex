@@ -1,8 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink} from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+//import { JsonPipe } from '@angular/common';//pour le debuggage
+import {getPokemonColor} from "../../pokemon.model";
 
 
 @Component({
@@ -41,8 +42,7 @@ export class PokemonEditComponent
   }
 
   // Add or remove a given type in the selected Pokemon list.
-onPokemonTypeChange(type: string, isChecked: boolean): void 
-  {
+  onPokemonTypeChange(type: string, isChecked: boolean): void {
     if (isChecked) {
       const control = new FormControl(type);
       this.pokemonTypeList.push(control);
@@ -53,7 +53,16 @@ onPokemonTypeChange(type: string, isChecked: boolean): void
         .indexOf(type);
       this.pokemonTypeList.removeAt(index);
     }
-
   }
+
+  onSubmit() {
+    console.log(this.form.value);
+  }
+
+  getPokemonColor(type: string) {
+    return getPokemonColor(type);
+  }
+
 } 
+
 

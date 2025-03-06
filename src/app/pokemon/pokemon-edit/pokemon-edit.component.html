@@ -11,7 +11,7 @@
           />
         </div>
         <div class="col-md-8">
-          <form>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="card-body">
               <h2 class="card-title">{{ pokemon().name }}</h2>
               <table class="table">
@@ -70,8 +70,16 @@
                         type="button"
                         class="btn btn-secondary btn-sm rounded-pill m-1"
                         (click)="pokemonTypeList.removeAt(index)"
+                        [style.backgroundColor]="getPokemonColor(type.value)"
+                        [style.color]="type.value === 'Electrik' ? 'black' : 'white'" 
+                        [style.color]="type.value === 'Fée' ? 'black' : 'white'" 
                       >
-                        {{ type.value }} <span class="badge">x</span>
+                        {{ type.value }} 
+                        <span 
+                            class="badge"
+                            [style.color]="type.value === 'Electrik' ? 'black' : 'white'"
+                            [style.color]="type.value === 'Fée' ? 'black' : 'white'" 
+                            >x</span>
                       </button>
                       }
                     <td>
@@ -118,5 +126,5 @@
         </div>
       </div>
     </div>
-    </div>
+</div>
     <!--<pre>{{ form.value | json }}</pre> C'est pour faire du débogage-->

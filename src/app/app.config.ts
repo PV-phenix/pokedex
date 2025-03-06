@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'pokemons/:id', component: PokemonProfileComponent, title: 'Pokédex'},//titre de la page ou de l'onglet
   { path: 'pokemons', component: PokemonListComponent,title: 'Pokemons' },//titre de la page ou de l'onglet
   { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent,title: 'Non trouvé' },
+  { path: '**', component: PageNotFoundComponent,title: 'Non trouvé' } 
 ];
 
 export const appConfig: ApplicationConfig = {
