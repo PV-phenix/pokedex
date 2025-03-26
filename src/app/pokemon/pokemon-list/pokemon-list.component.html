@@ -25,18 +25,16 @@
   
  <div class="container">
   <div class="row">
-   @for(pokemon of pokemonListFiltered(); track pokemon.id) {
-   <div class="col-md-6">
-    <div class="card mb-4"  appPokemonBorder  [pokemonType]="pokemon.types[0]">
-     <div class="row g-0">
-      <div 
-        class="col-md-6 d-flex align-items-center justify-content-center bg-light"
-        >
-       <img
-        class="img-fluid rounded-start"
-        [src]="pokemon.picture"
-        [alt]="pokemon.name"
-       />
+   @for(pokemon of pokemonListFiltered(); track pokemon.id) 
+   {
+    <div class="col-md-4 pokemon-card" [routerLink]="['/pokemons',pokemon.id]">
+       <div class="card mb-4"  appPokemonBorder  [pokemonType]="pokemon.types[0]">
+        <div class="row g-0">
+          <div class="col-md-6 d-flex align-items-center justify-content-center bg-light">     
+            <img
+              class="img-fluid rounded-start"
+              [src]="pokemon.picture"
+              [alt]="pokemon.name">
       </div>
       <div class="col-md-8">
        <div class="card-body  " >
@@ -47,27 +45,8 @@
         <p> Crée le : {{pokemon.created|date:'dd/MM/yyyy' | uppercase}}</p>
         <p class="card-text">Points de vie : {{ pokemon.life }}</p>
         <p>Type(s):{{ pokemon.types }} </p>
-        <div class="btn-group btn-group-sm" role="group">
-         <button
-          (click)="incrementLife(pokemon)"
-          class="btn btn-outline-secondary"
-          [disabled]="pokemon.life >= 30"
-         >
-          +
-         </button>
-         <button
-          (click)="decrementLife(pokemon)"
-          class="btn btn-outline-secondary"
-          [disabled]="pokemon.life <= 10"
-         >
-          -
-         </button>
-        </div><p class="card-text"><a 
-          class="text small text-muted"
-          [routerLink]="['/pokemons', pokemon.id]"
-        >
-        VOIR
-        </a></p>
+         <p class="card-text">
+          <p class="card-text">Dégâts:{{pokemon.damage}}</p>
         </div>
        </div>
       </div>

@@ -1,19 +1,19 @@
+@if(pokemon(); as pokemon) {
 <div class="container mt-5">
     <div class="card">
       <div class="row g-0">
-        <div
-          class="col-md-4 d-flex align-items-center justify-content-center bg-light"
-        >
+        <div class="col-md-4 d-flex align-items-center justify-content-center bg-light">
           <img
-            [src]="pokemon().picture"
+            [src]="pokemon.picture" 
             class="img-fluid rounded-start"
-            [alt]="pokemon().name"
+            [alt]="pokemon.name"
           />
         </div>
+        
         <div class="col-md-8">
-          <form>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="card-body">
-              <h2 class="card-title">{{ pokemon().name }}</h2>
+              <h2 class="card-title">{{ pokemon.name }}</h2>
               <table class="table">
                 <tbody>
                   <tr>
@@ -22,23 +22,33 @@
                       <input
                         type="text"
                         class="form-control"
+                        [class.is-invalid]="pokemonName.invalid"
+                        formControlName="name"
                         placeholder="Nom du Pokémon"
                       />
+                      @if(pokemonName.hasError('required'))
+                      {<div class="invalid-feeback">Veillez renseignez ce champs</div>}
+                      @if(pokemonName.hasError('minlength'))
+                      {<div class="invalid-feeback">Le nom doit comporter au moins trois caractères</div>}
+                      @if(pokemonName.hasError('maxlength'))
+                      {<div class="invalid-feeback">Veuillez saisir un nom plus court.(Maximum {{pokemonName.getError("maxlength").requiredLength}})</div>}
+                      @if(pokemonName.hasError('pattern'))
+                      {<div class="invalid-feeback">Veuillez saisir uniquement des lettres</div>}
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">Points de vie</th>
                     <td>
                       <div class="input-group">
-                        <button type="button" class="btn btn-outline-secondary" disabled>
+                        <button type="button" class="btn btn-outline-secondary" [disabled]="pokemonLife.value <= POKEMON_RULES().MIN_LIFE" (click)="decrementLife()">
                           -
                         </button>
                         <input
                           type="number"
-                          class="form-control text-center"
-                                                  readonly
+                          class="form-control text-center" readonly
+                          formControlName="life" readonly
                         />
-                        <button type="button" class="btn btn-outline-secondary" disabled>
+                        <button type="button" class="btn btn-outline-secondary" [disabled]="pokemonLife.value >= POKEMON_RULES().MAX_LIFE" (click)="incrementLife()">
                           +
                         </button>
                       </div>
@@ -48,15 +58,15 @@
                     <th scope="row">Dégâts</th>
                     <td>
                       <div class="input-group">
-                        <button type="button" class="btn btn-outline-secondary" disabled>
+                        <button type="button" class="btn btn-outline-secondary" [disabled]="pokemonDamage.value <= POKEMON_RULES().MIN_DAMAGE" (click)="decrementDamage()">
                           -
                         </button>
                         <input
                           type="number"
-                          class="form-control text-center"
-                                                  readonly
+                          class="form-control text-center" readonly
+                          formControlName="damage" readonly
                         />
-                        <button type="button" class="btn btn-outline-secondary" disabled>
+                        <button type="button" class="btn btn-outline-secondary" [disabled]="pokemonDamage.value >= POKEMON_RULES().MAX_DAMAGE" (click)="incrementDamage()">
                           +
                         </button>
                       </div>
@@ -65,13 +75,42 @@
                   <tr>
                     <th scope="row">Types</th>
                     <td>
-                      <div class="row mt-3">
-                        @for(type of pokemonService.getPokemonTypeList(); track
-                        type) {
-                        <div class="col-md-4">
+                         @for(type of pokemonTypeList.controls; track type; let index =$index)
+                         {
+                            <button type="button" class="btn btn-secondary btn-sm rounded-pill m-1"
+                            (click)="pokemonTypeList.removeAt(index)"
+                            [style.backgroundColor]="getPokemonColor(type.value)"
+                            [style.color]="type.value ==='Electrik'?'black':'white'"
+                            [style.color]="type.value ==='Fée'?'black':'white'"
+                            >
+                            {{type.value}}
+                            <span class="badge"
+                              [style.color]="type.value ==='Electrik'?'black':'white'"
+                              [style.color]="type.value ==='Fée'?'black':'white'"                            
+                            >x</span>
+                            </button>
+                          }
+                          @if(pokemonTypeList.hasError('required')) {
+                            <p class="text-danger">
+                              Veuillez sélectionner au moins un type pour un Pokémon.
+                            </p>
+                          }
+                          @if(pokemonTypeList.hasError('maxlength')) {
+                            <p class="text-danger">
+                              Veuillez sélectionner au maximum
+                              {{ pokemonTypeList.getError("maxlength").requiredLength }} types pour un Pokémon.
+                            </p>
+                          }
+                        <td>
+                        <div class="row mt-3">
+                          @for (type of pokemonService.getPokemonTypeList(); track type) {
+                          <div class="col-md-4">
                           <div class="form-check">
                             <input
+                            #checkbox
                               class="form-check-input"
+                              [checked]="isPokemonTypeSelected(type)"
+                              (change)="onPokemonTypechange(type,checkbox.checked)"
                               type="checkbox"
                               [value]="type"
                               [id]="type"
@@ -90,7 +129,7 @@
               <div class="d-flex justify-content-between mt-4">
                 <button
                   class="btn btn-link text-decoration-none text-warning"
-                  [routerLink]="['/pokemons', pokemon().id]"
+                  [routerLink]="['/pokemons', pokemon.id]"
                 >
                   RETOUR
                 </button>
@@ -104,5 +143,9 @@
             </div>
           </form>
         </div>
+      
       </div>
     </div>
+  </div>
+}
+<pre>{{form.value | json}} C'est pour faire du débogage<pre>
