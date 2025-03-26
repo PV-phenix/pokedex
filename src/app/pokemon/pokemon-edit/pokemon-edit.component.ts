@@ -9,7 +9,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-pokemon-edit',
-    imports: [RouterLink, ReactiveFormsModule,RouterLink,JsonPipe],
+    imports: [RouterLink, ReactiveFormsModule,JsonPipe],
     templateUrl: './pokemon-edit.component.html',
     styles: ``
 })
@@ -76,10 +76,6 @@ export class PokemonEditComponent
     damage: new FormControl(),
     types: new FormArray([], [Validators.required, Validators.maxLength(3)]),
   });
-
-
-
-
 
 get pokemonTypeList(){return this.form.get('types') as FormArray;}
 

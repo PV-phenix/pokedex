@@ -58,4 +58,9 @@ export class PokemonService {
 deletePokemon(pokemonId: number): Observable<void> {
   return this.http.delete<void>(`${this.POKEMON_API_URL}/${pokemonId}`);
 }
+
+// Ajoute un pokémon.
+addPokemon(pokemon: Omit<Pokemon, 'id'>): Observable<Pokemon> {
+  return this.http.post<Pokemon>(this.POKEMON_API_URL, pokemon);
+}
 }

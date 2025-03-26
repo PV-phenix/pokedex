@@ -8,12 +8,38 @@ import { PokemonEditComponent } from './pokemon/pokemon-edit/pokemon-edit.compon
 
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { authGuard } from './core/auth/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { PokemonAddComponent } from './pokemon/pokemon-add/pokemon-add.component';
 
 // 👇
 const routes: Routes = [
-  { path: 'pokemons/edit/:id', component: PokemonEditComponent, title: 'Pokémon'},
-  { path: 'pokemons/:id', component: PokemonProfileComponent, title: 'Pokédex'},//titre de la page ou de l'onglet
-  { path: 'pokemons', component: PokemonListComponent,title: 'Pokemons' },//titre de la page ou de l'onglet
+  // { path: 'pokemons/edit/:id', component: PokemonEditComponent, title: 'Pokémon'},
+  // { path: 'pokemons/:id', component: PokemonProfileComponent, title: 'Pokédex'},//titre de la page ou de l'onglet
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Page de connexion',
+  },  
+  { path: 'pokemons',canActivateChild: [authGuard],children:[
+    {
+      path: '', component: PokemonListComponent,
+    title: 'Pokédex',
+
+  },
+  {
+    path: 'add',
+    component: PokemonAddComponent,
+    title: 'AJout Pokémon',
+  },
+  {
+    path: 'edit/:id', component: PokemonEditComponent,
+    title: 'Pokémon',
+  },
+  {
+    path: ':id', component: PokemonProfileComponent,title: 'Pokémon',
+  },]},//titre de la page ou de l'onglet
+
   { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent,title: 'Non trouvé'}
 ];
