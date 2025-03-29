@@ -49,8 +49,7 @@
     "userland": "^0.4.3",
     "uuid": "^10.0.0",
     "vitefu": "^1.0.6",
-    "vue-router": "^4.5.0",
-    "zone.js": "~0.15.0"
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@analogjs/platform": "^1.14.0",

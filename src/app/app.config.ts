@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection} from '@angular/core';
 import { Routes, provideRouter } from '@angular/router';
 
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component'; // 
@@ -13,37 +13,46 @@ import { LoginComponent } from './login/login.component';
 import { PokemonAddComponent } from './pokemon/pokemon-add/pokemon-add.component';
 
 // 👇
-const routes: Routes = [
+const routes: Routes = 
+[
   // { path: 'pokemons/edit/:id', component: PokemonEditComponent, title: 'Pokémon'},
   // { path: 'pokemons/:id', component: PokemonProfileComponent, title: 'Pokédex'},//titre de la page ou de l'onglet
-  {
+  // { path: 'pokemons', component: PokemonListComponent,title: 'Pokemons' },//titre de la page ou de l'onglet
+  // { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
+  // { path: '**', component: PageNotFoundComponent,title: 'Non trouvé'}
+    {
     path: 'login',
     component: LoginComponent,
     title: 'Page de connexion',
-  },  
-  { path: 'pokemons',canActivateChild: [authGuard],children:[
-    {
-      path: '', component: PokemonListComponent,
-    title: 'Pokédex',
+    },  
 
-  },
-  {
-    path: 'add',
-    component: PokemonAddComponent,
-    title: 'AJout Pokémon',
-  },
-  {
-    path: 'edit/:id', component: PokemonEditComponent,
-    title: 'Pokémon',
-  },
-  {
-    path: ':id', component: PokemonProfileComponent,title: 'Pokémon',
-  },]},//titre de la page ou de l'onglet
+    { path: 'pokemons',canActivateChild: [authGuard],children:
+    [
+      {
+        path: '', component: PokemonListComponent,
+      title: 'Pokédex',
 
-  { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent,title: 'Non trouvé'}
+      },
+      {
+        path: 'add',
+        component: PokemonAddComponent,
+        title: 'Ajout Pokémon',
+      },
+      {
+        path: 'edit/:id', component: PokemonEditComponent,
+        title: 'Pokémon',
+      },
+      {
+        path: ':id', component: PokemonProfileComponent,title: 'Pokémon',//titre de la page ou de l'onglet
+      },
+  ]
+    },
+
+
+    { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent,title: 'Non trouvé'}
 ];
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(),provideHttpClient(withFetch())]
+  providers: [ provideRouter(routes),provideClientHydration(),provideExperimentalZonelessChangeDetection(),provideHttpClient(withFetch())]
 };
